@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+	<h2>Listing all items</h2>
+	<a href="/add">Add an item</a>
+	<a href="/">Home</a>
+	
+	<table>
+	<th>Row ID</th>
+	<th></th>
+	<th></th>
+	<th></th>
+	
+	{% for thing in rows %}
+	<tr>
+		<td>{{ thing[0] }}</td>
+		<td>{{ thing[1] }}</td>
+		<td>{{ thing[2] }}</td>
+		<td>{{ thing[3] }}</td>
+		<td>
+			<form action="{{ url_for('delete') }}" method = "post">
+				<input type="hidden" name="deletekey" value="{{ thing[0] }}">
+				<button type="submit">DELETE</button>
+			</form>
+		
+		</td>
+	</tr>
+	{% endfor %}
+	</table>
+</body>
+</html>
+
