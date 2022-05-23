@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign-Up</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+	<h1>Sign-up</h1>
+	<form action="add" method="post">
+        <div class="signup1">
+            <h2>Email</h2>
+            <input type="email" name="email" required><br>
+            <h2>Password</h2>
+            <input type="password" name="password" required><br>
+            <h2>Confirm Password</h2>
+            <input type="password" name="confirmpass"required><br>
+        </div>
+        <div class="signup2">
+            <h2>Name</h2>
+            <input type="text" name="fname" required><br>
+            <h2>Surname</h2>
+            <input type="text" name="lname" required><br>
+            <h2>Date of birth (dd/mm/yyyy)</h2>
+            <input type="Date" name="dob"required><br>
+            <h2>Biological Sex</h2>
+            <select name="sex" required>
+                <option value="">None</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+        </div>
+		<input type="submit" value="Sign-Up">
+	</form>
+	
+</body>
+</html>
