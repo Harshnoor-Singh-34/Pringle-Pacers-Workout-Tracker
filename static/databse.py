@@ -4,17 +4,19 @@ con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "P
 cur = con.cursor()
 
 id = 69
-name = "'Harshnoor'"
-lname = "'Singh'"
-email = "'harshnoor34@gmail.com'"
-password = "'password'"
-dob = "'2004-09-27'"
-sex = "'Male'"
+name = 'Harshnoor'
+lname = 'Singh'
+email = 'harshnoor34@gmail.com'
+password = 'password'
+dob = '2004-09-27'
+sex = 'M'
 
-table = '"Customer"'
+table = 'customer (fname, lname, email, password, dob, sex)'
 
-cur.execute(f'INSERT INTO {table} ("Userid", "fname", "lname", "email", "password", "birthdate", "sex") VALUES ({id}, {name}, {lname}, {email}, {password}, {dob}, {sex})')
-con.commit()
+cur.execute(f"SELECT * FROM customer WHERE email='s3943355@student.rmit.edu.au'")
+details = cur.fetchall()
+
+print(len(details[0]))
 con.close()
 
 # id = 69
