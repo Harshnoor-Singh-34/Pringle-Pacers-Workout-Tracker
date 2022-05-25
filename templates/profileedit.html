@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <form action="login" method="post">
+        <h2>Date of Birth:</h2>
+        <input type="date" name="dob" value="{{ user[5] }}" required><br>
+        <h2>Biological Sex:</h2>
+        {% if user[6] == 'M' %}
+            <select name="sex">
+                <option value="">None</option>
+                <option selected="selected" value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        {% elif user[6] == 'F' %}
+        <select name="sex">
+            <option value="">None</option>
+            <option value="M">Male</option>
+            <option selected="selected" value="F">Female</option>
+        </select>
+        {% else %}
+        <select name="sex">
+            <option selected="selected" value="">None</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+        {% endif %}
+        
+        <h2>Height:</h2>
+        <input type="number" name="height" required><h2>cm</h2><br>
+        <h2>Weight:</h2>
+        <input type="number" name="weight" required><h2>kg</h2><br>
+        <input type="submit" value="Done"><p>
+	</form>
+
+</body>
+</html>

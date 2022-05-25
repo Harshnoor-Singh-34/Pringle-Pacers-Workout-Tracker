@@ -12,6 +12,9 @@
 
 	<h1>Sign-up</h1>
 	<form action="sign-up" method="post">
+        {% if Error %}
+            <h1>{{ Error }}</h1>
+        {% endif %}
         <div class="signup1">
             <h2>Email</h2>
             <input type="email" name="email" required><br>
@@ -19,9 +22,6 @@
             <input type="password" name="password" required><br>
             <h2>Confirm Password</h2>
             <input type="password" name="confirmpass"required><br>
-            {% if Error %}
-                <h1>{{ Error }}</h1>
-            {% endif %}
         </div>
         <div class="signup2">
             <h2>Name</h2>
@@ -29,7 +29,7 @@
             <h2>Surname</h2>
             <input type="text" name="lname" required><br>
             <h2>Date of birth (dd/mm/yyyy)</h2>
-            <input type="Date" name="dob"><br>
+            <input type="Date" name="dob" required><br>
             <h2>Biological Sex</h2>
             <select name="sex">
                 <option value="">None</option>

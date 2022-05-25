@@ -1,7 +1,9 @@
 import psycopg2
 from flask import *
+import random
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = "pringlepacers"
 
 # load the index.html
 @app.route("/")
@@ -18,20 +20,29 @@ def signup():
 		confirmpass = request.form["confirmpass"]
 		fname = request.form["fname"]
 		lname = request.form["lname"]
-		dob = request.form["dob"]
+		dob = request.form["dob"] or None
 		sex = request.form["sex"]
 
-		if password == confirmpass:
-			table = 'customer (fname, lname, email, password, dob, sex)'
-			con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
-			cur = con.cursor()
-			cur.execute(f"INSERT INTO {table} VALUES ('{fname}', '{lname}', '{email}', '{password}', '{dob}', '{sex}')")
-			con.commit()
-			con.close()
-			return redirect(url_for("login"))
-		else:
-			Errormessage = "Paswords don't match"
+		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+		cur = con.cursor()
+		cur.execute(f"SELECT email FROM customer WHERE email='{email}'")
+		results = cur.fetchall()
+		con.close()
+		if len(results) != 0 and email == results[0][0]:
+			Errormessage = "Email already exists"
 			return render_template("signup.html", Error = Errormessage)
+		else:
+			if password == confirmpass:
+				table = 'customer (fname, lname, email, password, dob, sex)'
+				con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+				cur = con.cursor()
+				cur.execute(f"INSERT INTO {table} VALUES ('{fname}', '{lname}', '{email}', '{password}', '{dob}', '{sex}')")
+				con.commit()
+				con.close()
+				return redirect(url_for("login"))
+			else:
+				Errormessage = "Paswords don't match"
+				return render_template("signup.html", Error = Errormessage)
 		
 	else:
 		return render_template("signup.html")
@@ -54,12 +65,41 @@ def login():
 			return render_template("login.html", Error = Errormessage)
 		else:
 			if results[0][4] == password:
+				session['user'] = results[0][0]
 				return redirect(url_for("index"))
 			else:
 				Errormessage = "Password incorrect"
 				return render_template("login.html", Error = Errormessage)
 	else:
 		return render_template("login.html")
+
+@app.route("/about-us", methods = ["GET"])
+def aboutus():
+	return render_template("aboutus.html")
+
+@app.route("/profile", methods = ["GET"])
+def profile():
+	con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+	cur = con.cursor()
+	cur.execute(f"SELECT * FROM customer WHERE id='{session['user']}'")
+	results = cur.fetchone()
+	con.close()
+	return render_template("profile.html", user = results)
+
+@app.route("/profile-edit", methods = ["POST", "GET"])
+def profileedit():
+	if request.method == "POST":
+		dob = request.form["dob"]
+		sex = request.form["sex"]
+		height = request.form["height"]
+		weight = request.form["weight"]
+	else:
+		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+		cur = con.cursor()
+		cur.execute(f"SELECT * FROM customer WHERE id='{session['user']}'")
+		results = cur.fetchone()
+		con.close()
+		return render_template("profileedit.html", user = results)
 
 
 

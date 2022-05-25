@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Log-in</title>
+    <title>Profile Page</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -9,24 +9,14 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+    <a href="/profile-edit">EDIT</a>
+    <h1>{{ user[1] }} {{ user[2] }}</h1>
+    <h1>Date of Birth:                   {{ user[5] }}</h1>
+    <h1>Biological Sex:                  {{ user[6] }}</h1>
+    <h1>Email:                           {{ user[3] }}</h1>
+    
+    <h1>Height:                                       </h1>
+    <h1>Weight:                                       </h1>
 
-	<h1>Login</h1>
-    <div class="login1">
-        {% if Error %}
-            <h2>{{ Error }}</h2>
-        {% endif %}
-        <form action="login" method="post">
-            <h2>Email</h2>
-            <input type="email" name="email" required><br>
-            <h2>Password</h2>
-            <input type="password" name="password" required><br>
-            <input type="submit" value="Log-in">
-	    </form>
-        <a href="/sign-up">Sign up</a>
-        </div>
-        <div class="login2">
-        </div>
-		
-	
 </body>
 </html>
