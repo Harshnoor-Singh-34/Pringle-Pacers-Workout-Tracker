@@ -116,6 +116,74 @@ def profileedit():
 		con.close()
 		return render_template("profileedit.html", user = results)
 
+@app.route("/workout-randomizer", methods = ["POST", "GET"])
+def randomizer():
+	if request.method == "POST":
+		difficulty = request.form["difficulty"]
+		exclude = request.form["exclude"]
+		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+		cur = con.cursor()
+		cur.execute(f"DELETE FROM customer_workout WHERE id = {session['user']}")
+		con.commit()
+		if difficulty == "":
+			difficulty = None
+		if exclude == "":
+			exclude = None
+
+		if difficulty and exclude:
+			cur.execute(f"SELECT * FROM workout WHERE w_difficulty='{difficulty}' AND w_body !='{exclude}'")
+		elif difficulty:
+			cur.execute(f"SELECT * FROM workout WHERE w_difficulty='{difficulty}'")
+		elif exclude:
+			cur.execute(f"SELECT * FROM workout WHERE w_body !='{exclude}'")
+		else:
+			cur.execute(f"SELECT * FROM workout")
+		workouts = cur.fetchall()
+		random_workouts = []
+		counter = 0
+		while counter <= 7:
+			random_workout = random.choice(workouts)
+			if random_workout not in random_workouts:
+				random_workouts.append(random_workout)
+				cur.execute(f"INSERT INTO customer_workout(id,wid,complete) VALUES ({session['user']}, {random_workout[0]}, 0)")
+				con.commit()
+				counter += 1
+			
+		con.close()
+
+
+	con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+	cur = con.cursor()
+	cur.execute(f"select w.* from customer_workout cw join workout w on cw.wid = w.w_id WHERE id={session['user']}")
+	results = cur.fetchall()
+	con.close()
+	return render_template("randomizer.html", workouts = results)
+
+
+@app.route("/logout", methods = ["POST", "GET"])
+def logout():
+	session['user'] = None
+	return redirect(url_for("login"))
+
+@app.route("/mylist", methods = ["POST", "GET"])
+def mylist():
+	if request.method == "POST":
+		if "workout" in request.form:
+			workout = request.form["workout"]
+			con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+			cur = con.cursor()
+			cur.execute(f"UPDATE customer_workout set complete = 1 WHERE id={session['user']} AND wid='{workout}'")
+			con.commit()
+			con.close()
+	con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+	cur = con.cursor()
+	cur.execute(f"select w.*, cw.complete from customer_workout cw join workout w on cw.wid = w.w_id WHERE id={session['user']};")
+	results = cur.fetchall()
+	con.close()
+	return render_template("mylist.html", workouts = results)
+
+	
+
 # list items database
 # @app.route("/list", methods=["POST", "GET"])
 # def listItems():

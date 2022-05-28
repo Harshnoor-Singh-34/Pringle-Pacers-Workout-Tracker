@@ -24,8 +24,8 @@ cur = con.cursor()
 
 
 
-cur.execute(f"SELECT id, fname, lname, email, password, TO_CHAR(dob :: DATE, 'dd/mm/yyyy'), sex, height, weight FROM customer WHERE id=1")
-details = cur.fetchone()
+cur.execute(f"SELECT * FROM workout WHERE w_difficulty='Hard' AND w_body !='abs';")
+details = cur.fetchall()
 print(details)
 con.close()
 

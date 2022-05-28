@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Profile Page</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+
 <body>
+    <nav>
+        <div class="container1">
+            <ul>
+                <li><img src="..\static\img\pringles.png" alt="Pringle Pacers"></li>
+                <li><a href="index">Home</a></li>
+                <li><a href="about-us">About Us</a></li>
+                <li><a href="bmi">BMI Calculator</a></li>
+                <li><a href="mylist">My List</a></li>
+                <li><a href="workout-randomizer">Randomizer</a></li>
+                <li><a href="">Workouts</a></li>
+                <li><a href="">Achievements</a></li>
+                <li><a href="profile">Profile</a></li>
+                <li><a href="logout">Log out</a></li>
+            </ul>
+        </div>
+    </nav>
     <form action="profile-edit" method="post">
         <h2>Date of Birth:</h2>
         <input type="date" name="dob" value="{{ user[5] }}" required><br>
         <h2>Biological Sex:</h2>
         {% if user[6] == 'M' %}
-            <select name="sex">
-                <option value="">None</option>
-                <option selected="selected" value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
+        <select name="sex">
+            <option value="">None</option>
+            <option selected="selected" value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
         {% elif user[6] == 'F' %}
         <select name="sex">
             <option value="">None</option>
@@ -32,13 +52,25 @@
             <option value="F">Female</option>
         </select>
         {% endif %}
-        
+
         <h2>Height (cm):</h2>
-        <input type="number" name="height" value="{{ user[7] }}"><h2></h2><br>
+        <input type="number" name="height" value="{{ user[7] }}">
+        <h2></h2><br>
         <h2>Weight (kg):</h2>
-        <input type="number" name="weight" value="{{ user[8] }}"><h2></h2><br>
-        <input type="submit" value="Done"><p>
-	</form>
+        <input type="number" name="weight" value="{{ user[8] }}">
+        <h2></h2><br>
+        <input type="submit" value="Done">
+        <p>
+    </form>
+
+    <div class="footer">
+        <div class="container1">
+            <h4>Pringle Pacers Assignment 3 - Workout tracker</h4>
+            <h5>Yonathan Kogan, Armand Lopez, Harshnoor Singh, Cheuk Lam Chung (Kandy), Sheng Syue Tseng, Daniel Tran
+            </h5>
+        </div>
+    </div>
 
 </body>
+
 </html>

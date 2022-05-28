@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Sign-Up</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
 
-	<h1>Sign-up</h1>
-	<form action="sign-up" method="post">
+<body>
+    <nav>
+        <div class="container1">
+            <ul>
+                <li><img src="..\static\img\pringles.png" alt="Pringle Pacers"></li>
+                <li><a href="index">Home</a></li>
+                <li><a href="about-us">About Us</a></li>
+                <li><a href="bmi">BMI Calculator</a></li>
+                <li><a href="login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <h1>Sign-up</h1>
+    <form action="sign-up" method="post">
         {% if Error %}
-            <h1>{{ Error }}</h1>
+        <h1>{{ Error }}</h1>
         {% endif %}
         <div class="signup1">
             <h2>Email</h2>
@@ -21,7 +36,7 @@
             <h2>Password</h2>
             <input type="password" name="password" required><br>
             <h2>Confirm Password</h2>
-            <input type="password" name="confirmpass"required><br>
+            <input type="password" name="confirmpass" required><br>
         </div>
         <div class="signup2">
             <h2>Name</h2>
@@ -37,8 +52,17 @@
                 <option value="F">Female</option>
             </select>
         </div>
-		<input type="submit" value="Sign-Up">
-	</form>
-	
+        <input type="submit" value="Sign-Up">
+    </form>
+
+    <div class="footer">
+        <div class="container1">
+            <h4>Pringle Pacers Assignment 3 - Workout tracker</h4>
+            <h5>Yonathan Kogan, Armand Lopez, Harshnoor Singh, Cheuk Lam Chung (Kandy), Sheng Syue Tseng, Daniel Tran
+            </h5>
+        </div>
+    </div>
+
 </body>
+
 </html>
