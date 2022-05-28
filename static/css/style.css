@@ -1,2 +1,61 @@
 /* CSS style for Workout_tracker project */
 *{box-sizing:border-box; vertical-align:top;}
+
+body{
+    background-color:white
+}
+
+.container1{
+    width:80%;
+    margin:auto;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+}
+
+
+
+nav{
+    background-color: #283540;
+    color:rgb(18,24,31);
+    width: 100%;
+}
+
+nav ul{
+    padding:25px;
+    list-style:none;
+    margin-bottom:0;
+    text-align: center;
+}
+
+nav li{
+    display:inline;
+    margin-right:3%;
+}
+
+nav a{
+    color:white;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight:500;
+    font-size:20px;
+    line-height: 1.9em;
+}
+
+nav img{
+    width:50px;
+}
+
+nav a:hover{
+    color:#808080;
+}
+
+h1{
+    color: black;
+}
+
+h2{
+    color: black;
+}
