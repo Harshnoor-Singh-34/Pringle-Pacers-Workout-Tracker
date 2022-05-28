@@ -3,7 +3,7 @@ from flask import *
 import random
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "pringlepacers"
+app.config['SECRET_KEY'] = "pringlepacerspp"
 
 # load the index.html
 @app.route("/")
@@ -81,7 +81,7 @@ def aboutus():
 def profile():
 	con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
 	cur = con.cursor()
-	cur.execute(f"SELECT * FROM customer WHERE id='{session['user']}'")
+	cur.execute(f"SELECT id, fname, lname, email, password, TO_CHAR(dob :: DATE, 'dd/mm/yyyy'), sex, height, weight FROM customer WHERE id='{session['user']}'")
 	results = cur.fetchone()
 	con.close()
 	return render_template("profile.html", user = results)
@@ -91,8 +91,23 @@ def profileedit():
 	if request.method == "POST":
 		dob = request.form["dob"]
 		sex = request.form["sex"]
-		height = request.form["height"]
-		weight = request.form["weight"]
+		height = request.form["height"] or None
+		weight = request.form["weight"] or None
+
+		height_weight_sql = ""
+		if height and weight:
+			height_weight_sql += f",height={height}, weight={weight}"
+		elif height:
+			height_weight_sql += f",height={height}"
+		elif weight:
+			height_weight_sql += f",weight={weight}"
+
+		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+		cur = con.cursor()
+		cur.execute(f"UPDATE customer SET dob='{dob}', sex='{sex}' {height_weight_sql} WHERE id = {session['user']}")
+		con.commit()
+		con.close()
+		return redirect(url_for("profile"))
 	else:
 		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
 		cur = con.cursor()
@@ -100,8 +115,6 @@ def profileedit():
 		results = cur.fetchone()
 		con.close()
 		return render_template("profileedit.html", user = results)
-
-
 
 # list items database
 # @app.route("/list", methods=["POST", "GET"])

@@ -12,11 +12,20 @@
     <a href="/profile-edit">EDIT</a>
     <h1>{{ user[1] }} {{ user[2] }}</h1>
     <h1>Date of Birth:                   {{ user[5] }}</h1>
-    <h1>Biological Sex:                  {{ user[6] }}</h1>
+    {% if user[6] == "M" %}
+    <h1>Biological Sex:                  Male</h1>
+    {% elif user[6] == "F" %}
+    <h1>Biological Sex:                  Female</h1>
+    {% else %}
+    <h1>Biological Sex:                  N/A</h1>
+    {% endif %}
     <h1>Email:                           {{ user[3] }}</h1>
-    
-    <h1>Height:                                       </h1>
-    <h1>Weight:                                       </h1>
+    {% if user[7] %}
+    <h1>Height:                          {{ user[7] }} cm</h1>
+    {% endif %}
+    {% if user[8] %}
+    <h1>Weight:                          {{ user[8] }} kg</h1>
+    {% endif %}
 
 </body>
 </html>

@@ -24,9 +24,9 @@ cur = con.cursor()
 
 
 
-cur.execute(f"SELECT * FROM customer WHERE email='s3943355@student.rmit.edu.au'")
+cur.execute(f"SELECT id, fname, lname, email, password, TO_CHAR(dob :: DATE, 'dd/mm/yyyy'), sex, height, weight FROM customer WHERE id=1")
 details = cur.fetchone()
-print(details[0])
+print(details)
 con.close()
 
 # id = 69
