@@ -343,5 +343,5 @@ def achivement():
 # 	return redirect(url_for("listItems"))
 
 if __name__ == "__main__":
-	app.run()
+	app.run(debug=True)
 
