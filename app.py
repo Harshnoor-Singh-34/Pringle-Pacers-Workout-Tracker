@@ -11,7 +11,7 @@ def index():
 	if "user" not in session:
 		session['user'] = None
 	if session['user']:
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"SELECT fname, lname FROM customer WHERE id='{session['user']}'")
 		user = cur.fetchone()
@@ -36,7 +36,7 @@ def signup():
 		dob = request.form["dob"] or None
 		sex = request.form["sex"]
 
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"SELECT email FROM customer WHERE email='{email}'")
 		results = cur.fetchall()
@@ -80,7 +80,7 @@ def login():
 	if request.method == "POST":
 		email = request.form["email"]
 		password = request.form["password"]
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"SELECT * FROM customer WHERE email='{email}'")
 		results = cur.fetchall()
@@ -104,7 +104,7 @@ def aboutus():
 	if "user" not in session:
 		session['user'] = None
 	if session['user']:
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"SELECT ca.caid, ca.complete from customer_achivement ca join achivements a on ca.aid = a.aid where a.name = 'Visit the about us page' and ca.id = {session['user']}")
 		results = cur.fetchone()
@@ -120,7 +120,7 @@ def profile():
 		session['user'] = None
 	if session['user'] == None:
 		return redirect(url_for("index"))
-	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+	con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"SELECT id, fname, lname, email, password, TO_CHAR(dob :: DATE, 'dd/mm/yyyy'), sex, height, weight FROM customer WHERE id='{session['user']}'")
 	results = cur.fetchone()
@@ -147,13 +147,13 @@ def profileedit():
 		elif weight:
 			height_weight_sql += f",weight={weight}"
 
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"UPDATE customer SET dob='{dob}', sex='{sex}' {height_weight_sql} WHERE id = {session['user']}")
 		con.commit()
 		con.close()
 
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"SELECT ca.caid, ca.complete from customer_achivement ca join achivements a on ca.aid = a.aid where a.name = 'Edit your details' and ca.id = {session['user']}")
 		results = cur.fetchone()
@@ -163,7 +163,7 @@ def profileedit():
 		con.close()
 		return redirect(url_for("profile"))
 	else:
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"SELECT * FROM customer WHERE id='{session['user']}'")
 		results = cur.fetchone()
@@ -179,7 +179,7 @@ def randomizer():
 	if request.method == "POST":
 		difficulty = request.form["difficulty"]
 		exclude = request.form["exclude"]
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"DELETE FROM customer_workout WHERE id = {session['user']}")
 		con.commit()
@@ -210,7 +210,7 @@ def randomizer():
 		con.close()
 
 
-	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+	con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"select w.* from customer_workout cw join workout w on cw.wid = w.w_id WHERE id={session['user']}")
 	results = cur.fetchall()
@@ -232,12 +232,12 @@ def mylist():
 	if request.method == "POST":
 		if "workout" in request.form:
 			workout = request.form["workout"]
-			con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+			con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 			cur = con.cursor()
 			cur.execute(f"UPDATE customer_workout set complete = 1 WHERE id={session['user']} AND wid='{workout}'")
 			con.commit()
 			con.close()
-	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+	con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"select w.*, cw.complete from customer_workout cw join workout w on cw.wid = w.w_id WHERE id={session['user']};")
 	results = cur.fetchall()
@@ -250,7 +250,7 @@ def workout():
 		session['user'] = None
 	if session['user'] == None:
 		return redirect(url_for("index"))
-	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+	con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"select * from workout where w_id not in (select wid from customer_workout WHERE id={session['user']})")
 	results = cur.fetchall()
@@ -263,7 +263,7 @@ def workout_select(id):
 		session['user'] = None
 	if session['user'] == None:
 		return redirect(url_for("index"))
-	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+	con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"INSERT INTO customer_workout (id,wid,complete) VALUES ({session['user']}, {id}, 0)")
 	con.commit()
@@ -284,7 +284,7 @@ def bmi():
 
 	if session['user']:
 		print(1)
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"SELECT height, weight, sex FROM customer WHERE id={session['user']}")
 		results = cur.fetchone()
@@ -298,7 +298,7 @@ def achivement():
 		session['user'] = None
 	if session['user'] == None:
 		return redirect(url_for("index"))
-	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+	con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"SELECT ca.complete, a.name, TO_CHAR(ca.date_finished :: DATE, 'dd/mm/yyyy') FROM customer_achivement ca join achivements a on ca.aid = a.aid WHERE ca.id='{session['user']}'")
 	results = cur.fetchall()
