@@ -24,8 +24,8 @@ cur = con.cursor()
 
 
 
-cur.execute(f"SELECT * FROM workout WHERE w_difficulty='Hard' AND w_body !='abs';")
-details = cur.fetchall()
+cur.execute(f"SELECT height, weight, sex FROM customer WHERE id=1")
+details = cur.fetchone()
 print(details)
 con.close()
 

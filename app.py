@@ -182,6 +182,43 @@ def mylist():
 	con.close()
 	return render_template("mylist.html", workouts = results)
 
+@app.route("/workout", methods = ["POST", "GET"])
+def workout():
+	con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+	cur = con.cursor()
+	cur.execute(f"select * from workout where w_id not in (select wid from customer_workout WHERE id={session['user']})")
+	results = cur.fetchall()
+	con.close()
+	return render_template("workout-select.html", workouts = results)
+
+@app.route("/workout/<id>", methods = ["POST", "GET"])
+def workout_select(id):
+	con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+	cur = con.cursor()
+	cur.execute(f"INSERT INTO customer_workout (id,wid,complete) VALUES ({session['user']}, {id}, 0)")
+	con.commit()
+	con.close()
+	return redirect(url_for("workout"))
+
+@app.route("/bmi", methods = ["POST", "GET"])
+def bmi():
+	bmi = 0
+	if request.method == "POST":
+		sex = request.form["sex"]
+		height = request.form["height"]
+		weight = request.form["weight"]
+		bmi = round(int(weight) / ((int(height))/100 * (int(height))/100), 2)
+
+
+	if session['user']:
+		print(1)
+		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+		cur = con.cursor()
+		cur.execute(f"SELECT height, weight, sex FROM customer WHERE id={session['user']}")
+		results = cur.fetchone()
+		con.close()
+		return render_template("bmi.html", data = results, bmi = bmi)
+	return render_template("bmi.html", data = None, bmi = bmi)
 	
 
 # list items database
