@@ -442,3 +442,13 @@ h2{
 .but{
     text-align: center;
 }
+
+.tablelist{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+}
+
+.worklist{
+    margin-left: 10px;
+}
