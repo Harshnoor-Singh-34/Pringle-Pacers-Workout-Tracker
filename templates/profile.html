@@ -25,23 +25,28 @@
             </ul>
         </div>
     </nav>
-    <a href="/profile-edit">EDIT</a>
-    <h1>{{ user[1] }} {{ user[2] }}</h1>
-    <h1>Date of Birth:                   {{ user[5] }}</h1>
-    {% if user[6] == "M" %}
-    <h1>Biological Sex:                  Male</h1>
-    {% elif user[6] == "F" %}
-    <h1>Biological Sex:                  Female</h1>
-    {% else %}
-    <h1>Biological Sex:                  N/A</h1>
-    {% endif %}
-    <h1>Email:                           {{ user[3] }}</h1>
-    {% if user[7] %}
-    <h1>Height:                          {{ user[7] }} cm</h1>
-    {% endif %}
-    {% if user[8] %}
-    <h1>Weight:                          {{ user[8] }} kg</h1>
-    {% endif %}
+
+    <a href="profileedit" class="edit-button">EDIT</a>
+    <div class="profile-content">
+        <h1><strong>{{ user[1] }} {{ user[2] }}</stron></h1>
+        <br>
+        <br>
+        <h3>Date of Birth:                   {{ user[5] }}</h3>
+        {% if user[6] == "M" %}
+        <h3>Biological Sex:                  Male</h3>
+        {% elif user[6] == "F" %}
+        <h3>Biological Sex:                  Female</h3>
+        {% else %}
+        <h3>Biological Sex:                  N/A</h3>
+        {% endif %}
+        <h3>Email:                           {{ user[3] }}</h3>
+        {% if user[7] %}
+        <h3>Height:                          {{ user[7] }} cm</h3>
+        {% endif %}
+        {% if user[8] %}
+        <h3>Weight:                          {{ user[8] }} kg</h3>
+        {% endif %}
+    </div>
 
     <div class="footer">
         <div class="container1">

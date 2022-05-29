@@ -29,39 +29,49 @@
             </ul>
         </div>
     </nav>
-    <form action="profile-edit" method="post">
-        <h2>Date of Birth:</h2>
-        <input type="date" name="dob" value="{{ user[5] }}" required><br>
-        <h2>Biological Sex:</h2>
-        {% if user[6] == 'M' %}
-        <select name="sex">
-            <option value="">None</option>
-            <option selected="selected" value="M">Male</option>
-            <option value="F">Female</option>
-        </select>
-        {% elif user[6] == 'F' %}
-        <select name="sex">
-            <option value="">None</option>
-            <option value="M">Male</option>
-            <option selected="selected" value="F">Female</option>
-        </select>
-        {% else %}
-        <select name="sex">
-            <option selected="selected" value="">None</option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
-        </select>
-        {% endif %}
 
-        <h2>Height (cm):</h2>
-        <input type="number" name="height" value="{{ user[7] }}">
-        <h2></h2><br>
-        <h2>Weight (kg):</h2>
-        <input type="number" name="weight" value="{{ user[8] }}">
-        <h2></h2><br>
-        <input type="submit" value="Done">
-        <p>
-    </form>
+    <div class="profile-content">
+        <form action="profile-edit" method="post">
+            <h1><strong>{{ user[1] }} {{ user[2] }}</stron></h1>
+            <br>
+            <br>
+            <h3>Date of Birth:</h3>
+            <input class="edit-profile" type="date" name="dob" value="{{ user[5] }}" required><br>
+            <h3>Biological Sex:</h3>
+            {% if user[6] == 'M' %}
+            <select class="edit-profile" name="sex">
+                <option value="">None</option>
+                <option selected="selected" value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+            {% elif user[6] == 'F' %}
+            <select class="edit-profile" name="sex">
+                <option value="">None</option>
+                <option value="M">Male</option>
+                <option selected="selected" value="F">Female</option>
+            </select>
+            {% else %}
+            <select class="edit-profile" name="sex">
+                <option selected="selected" value="">None</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+            {% endif %}
+
+            <h3>Height (cm):</h3>
+            <input class="edit-profile"type="number" name="height" value="{{ user[7] }}">
+            <h3></h3><br>
+            <h3>Weight (kg):</h3>
+            <input class="edit-profile"type="number" name="weight" value="{{ user[8] }}">
+            <h3></h3><br>
+            <span>
+                <input class="edit-submit-button" type="submit" value="Done">
+                <a class="edit-cancel-button" href="profile">Cancel</a>
+            </span>
+            
+            <p>
+        </form> 
+    </div>
 
     <div class="footer">
         <div class="container1">
