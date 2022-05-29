@@ -378,3 +378,67 @@ h2{
     background-color: #9f1a1a;
 }
 
+.mylist{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    text-align: center;
+    
+}
+
+
+.mylist h3{
+    font-size: 36px;
+    border-radius: 10px;
+    border: #283540;
+    background-color: #d9d9d9;
+    width: fit-content;
+    height: fit-content;
+    display: inline-table;
+    margin-bottom: 50px;
+}
+
+
+.mylist input{
+    width: 20px;
+    height: 53px;
+}
+
+.compbut{
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+    text-align: center;
+    border-radius: 10px;
+    background-color:#03A6A6 ;
+    width: 230px !important;
+    height: 53px !important;
+}
+
+
+.mylist a{
+    text-decoration: none;
+    border-radius: 10px;
+    background-color: #03A6A6;
+    color: #283540;
+    font-size: 24px;
+    border:#283540 
+}
+.buttonran{
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+    text-align: center;
+    border-radius: 10px;
+    background-color:#03A6A6 ;
+    width: 230px !important;
+    height: 53px !important;
+    text-align: center;
+    
+}
+
+.but{
+    text-align: center;
+}
