@@ -8,6 +8,8 @@ app.config['SECRET_KEY'] = "pringlepacerspp"
 # load the index.html
 @app.route("/")
 def index():
+	if "user" not in session:
+		session['user'] = None
 	if session['user']:
 		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
