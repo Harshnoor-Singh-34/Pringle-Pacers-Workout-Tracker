@@ -35,19 +35,18 @@
         </div>
     </nav>
 
-    <div class="welcome">
-        {% if session['user'] %}
-        <h1>Welcome, {{ name[0] }} {{ name[1] }}</h1>
-    </div>
-
-
     <div class="content1">
-        <div class="row">
-            <div class="col-lg-6">
-                <table>
-                    <tr>
-                        <th>Preview of Current list:</th>
-                    </tr>
+
+        <div class="welcome">
+            {% if session['user'] %}
+            <h1>Welcome, {{ name[0] }} {{ name[1] }}</h1>
+        </div>
+
+
+        <!-- <div class="content2"> -->
+            <div class="home-preview">
+                <h4 id="preview-header">Preview of Current list:</h4>
+                <table class="table-border">
                     <tr>
                         <th>Name</th>
                         <th>Difficulty</th>
@@ -68,42 +67,33 @@
                     {% endfor %}
                 </table>
             </div>
+        <!-- </div> -->
+        <div class="home-preview">
+            <h4 id="latest-header">Latest Achievement:</h4>
+            <table >
+                <tr>
+                    <td>Achivement Name</td>
+                    <td>Date Finished</td>
+                </tr>
+                <tr>
+                    <td>{{ achivement[1] }}</td>
+                    <td>{{ achivement[0] }}</td>
+                </tr>
+            </table>  
+        </div> 
+    </div>
 
-
-
-
-            <div class="col-lg-6">
-                <table >
-                    <tr>
-                        <th>Latest Achievement:</th>
-                    </tr>
-                    <tr>
-                        <td>Achivement Name</td>
-                        <td>Date Finished</td>
-                    </tr>
-                    <tr>
-                        <td>{{ achivement[1] }}</td>
-                        <td>{{ achivement[0] }}</td>
-                    </tr>
-                </table>   
-            </div>
-
-            {% else %}
-            <h1 class="welhead">Welcome</h1>
-
-            <div class="content2">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <h4>Preview of Current list:</h4>
-                        <a href="/login">Login to view</a>
-                    </div>
-                    <div class="col-lg-6">
-                        <h4>Latest Achievement:</h4>
-                        <a href="/login">Login to view</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+        {% else %}
+    <div class="content2">
+    <h1 class="welhead">Welcome</h1>
+        <div class="home-preview">
+            <h4 id="preview-header">Preview of Current list:</h4>
+            <a href="/login">Login to view</a>
+        </div>
+        <div class="home-preview">
+            <h4 id="latest-header">Latest Achievement:</h4>
+            <a href="/login">Login to view</a>
+            {% endif %}
         </div>
     </div>
 
