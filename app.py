@@ -26,8 +26,6 @@ def index():
 # Sign-up page
 @app.route("/sign-up", methods =["POST", "GET"])
 def signup():
-	if "user" not in session:
-		session['user'] = None
 	Errormessage = None
 	if request.method == "POST":
 		email = request.form["email"]
@@ -53,7 +51,7 @@ def signup():
 				cur.execute(f"SELECT aid FROM achivements")
 				aid = cur.fetchall() 
 				cur.execute(f"SELECT id from customer where email = '{email}'")
-				id = cur.fetchone();
+				id = cur.fetchone()
 				for achivement in aid:
 					cur.execute(f"INSERT INTO customer_achivement(id, aid, complete) VALUES({id[0]}, {achivement[0]}, 0)")
 				cur.execute(f"SELECT ca.caid from customer_achivement ca join achivements a on ca.aid = a.aid where a.name = 'Register an account' and ca.id = {id[0]}")
