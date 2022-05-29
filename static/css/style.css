@@ -571,14 +571,36 @@ h2{
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-
     border-radius: 10px;
     float: right;
 }
 
 .bmi-background-color{
     background-color: #ffffff;
-   
     margin: 30px;
     border-radius: 20px;
+}
+
+
+.welcome{
+    text-align: center;
+}
+
+.welcome h1{
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+}
+
+.welhead{
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+}
+
+
+.content{
+  text-align: center;
 }
