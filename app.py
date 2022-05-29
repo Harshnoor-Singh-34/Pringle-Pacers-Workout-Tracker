@@ -26,6 +26,8 @@ def index():
 # Sign-up page
 @app.route("/sign-up", methods =["POST", "GET"])
 def signup():
+	if "user" not in session:
+		session['user'] = None
 	Errormessage = None
 	if request.method == "POST":
 		email = request.form["email"]
@@ -72,6 +74,8 @@ def signup():
 # Log-in page
 @app.route("/login", methods =["POST", "GET"])
 def login():
+	if "user" not in session:
+		session['user'] = None
 	Errormessage = None
 	if request.method == "POST":
 		email = request.form["email"]
@@ -112,6 +116,10 @@ def aboutus():
 
 @app.route("/profile", methods = ["GET"])
 def profile():
+	if "user" not in session:
+		session['user'] = None
+	if session['user'] == None:
+		return redirect(url_for("index"))
 	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"SELECT id, fname, lname, email, password, TO_CHAR(dob :: DATE, 'dd/mm/yyyy'), sex, height, weight FROM customer WHERE id='{session['user']}'")
@@ -121,6 +129,10 @@ def profile():
 
 @app.route("/profile-edit", methods = ["POST", "GET"])
 def profileedit():
+	if "user" not in session:
+		session['user'] = None
+	if session['user'] == None:
+		return redirect(url_for("index"))
 	if request.method == "POST":
 		dob = request.form["dob"]
 		sex = request.form["sex"]
@@ -160,6 +172,10 @@ def profileedit():
 
 @app.route("/workout-randomizer", methods = ["POST", "GET"])
 def randomizer():
+	if "user" not in session:
+		session['user'] = None
+	if session['user'] == None:
+		return redirect(url_for("index"))
 	if request.method == "POST":
 		difficulty = request.form["difficulty"]
 		exclude = request.form["exclude"]
@@ -209,6 +225,10 @@ def logout():
 
 @app.route("/mylist", methods = ["POST", "GET"])
 def mylist():
+	if "user" not in session:
+		session['user'] = None
+	if session['user'] == None:
+		return redirect(url_for("index"))
 	if request.method == "POST":
 		if "workout" in request.form:
 			workout = request.form["workout"]
@@ -226,6 +246,10 @@ def mylist():
 
 @app.route("/workout", methods = ["POST", "GET"])
 def workout():
+	if "user" not in session:
+		session['user'] = None
+	if session['user'] == None:
+		return redirect(url_for("index"))
 	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"select * from workout where w_id not in (select wid from customer_workout WHERE id={session['user']})")
@@ -235,6 +259,10 @@ def workout():
 
 @app.route("/workout/<id>", methods = ["POST", "GET"])
 def workout_select(id):
+	if "user" not in session:
+		session['user'] = None
+	if session['user'] == None:
+		return redirect(url_for("index"))
 	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"INSERT INTO customer_workout (id,wid,complete) VALUES ({session['user']}, {id}, 0)")
@@ -266,6 +294,10 @@ def bmi():
 
 @app.route("/achievement", methods = ["POST", "GET"])
 def achivement():
+	if "user" not in session:
+		session['user'] = None
+	if session['user'] == None:
+		return redirect(url_for("index"))
 	con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
 	cur = con.cursor()
 	cur.execute(f"SELECT ca.complete, a.name, TO_CHAR(ca.date_finished :: DATE, 'dd/mm/yyyy') FROM customer_achivement ca join achivements a on ca.aid = a.aid WHERE ca.id='{session['user']}'")
