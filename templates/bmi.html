@@ -31,110 +31,122 @@
         </div>
     </nav>
 
-    <div>
-        <form action="bmi" method="post">
-            <h1>BMI Calculator</h1>
-            {% if session['user'] %}
-            <div class="bmi-sex">
-                <h4 style="display: inline-block">What is your sex?</h4>
-                <h6 style="display: inline-block">Male</h6>
-                    {% if data[2] == "M" %}
-                    <input type="radio" name="sex" value="M" checked required>
-                    {% else %}
-                    <input type="radio" name="sex" value="M" required>
-                    {% endif %}
-                <h6 style="display: inline-block">Female</h6>
-                    {% if data[2] == "F" %}
-                    <input type="radio" name="sex" value="F"  checked reqired>
-                    {% else %}
-                    <input type="radio" name="sex" value="F" reqired>
-                    {% endif %}
+    <h1 style="margin: 50px">BMI Calculator</h1>
+    <div class="bmi-background-color">
+        <div class="bmi-sex">
+            <form action="bmi" method="post">
+                
+                {% if session['user'] %}
+                <div class="bmi-margin">
+                    <h4 >What is your sex?</h4>
+                    <h6 >Male</h6>
+                        {% if data[2] == "M" %}
+                        <input  type="radio" name="sex" value="M" checked required>
+                        {% else %}
+                        <input  type="radio" name="sex" value="M" required>
+                        {% endif %}
+                    <h6 >Female</h6>
+                        {% if data[2] == "F" %}
+                        <input  type="radio" name="sex" value="F"  checked reqired>
+                        {% else %}
+                        <input  type="radio" name="sex" value="F" reqired>
+                        {% endif %}
+                </div>
+                <div class="bmi-margin">
+                    <h4 >What is your height?</h4>
+                        {% if data[0] %}
+                        <input class="bmi-input" type="number" name="height" value="{{ data[0] }}" required>
+                        {% else %}
+                        <input  class="bmi-input" type="number" name="height" required>
+                        {% endif %}
+                </div>
+                <div class="bmi-margin">
+                    <h4 >What is your weight?</h4>
+                        {% if data[1] %}
+                        <input class="bmi-input" type="number" name="weight" value="{{ data[1] }}" required>
+                        {% else %}
+                        <input class="bmi-input" type="number" name="weight" required>
+                        {% endif %}
+                </div>
+
+                {% else %}
+                <div class="bmi-margin">
+                    <h4 >What is your sex?</h4>
+                    <h6 >Male</h6>
+                    <input  type="radio" name="sex" value="M" required>
+                    <h6 >Female</h6>
+                    <input  type="radio" name="sex" value="F" reqired>
+                </div>
+                <div class="bmi-margin">
+                    <h4 >What is your height?</h4>
+                    <input class="bmi-input" type="number" name="height" required>
+                </div>
+                <div class="bmi-margin">
+                    <h4 >What is your weight?</h4>
+                    <input  class="bmi-input" type="number" name="weight" required>
+                </div>
+                {% endif %}
+                <input class="calculate-button" type="submit" value="Calculate"> 
+            </form>
+        </div>
+
+        <div class="bmi-result">
+            <h2>BMI Result</h2>
+            <h2>{{ bmi }}</h2>
+            <table>
+                <tr>
+                    <th style="background-color: #3EBAFF">Underweight</th>
+                    <th style="background-color: #00FF38">Normal</th>
+                    <th style="background-color: #DDF000">Overweight</th>
+                    <th style="background-color: #FF9900">Obese</th>
+                    <th style="background-color: #FF0000">Extremely Obese</th>
+                </tr>
+                <tr>
+                    <td style="background-color: #3EBAFF">< 18.5</td>
+                    <td style="background-color: #00FF38">18.5 - 24.9</td>
+                    <td style="background-color: #DDF000">25 - 29.9</td>
+                    <td style="background-color: #FF9900">30 - 34.9</td>
+                    <td style="background-color: #FF0000">35 < </td>
+                </tr>
+            </table>
+
+
+            {% if bmi <= 0 %}
+
+            {% elif bmi < 18.5%}
+            <div style="border:#3EBAFF solid 5px; border-radius: 20px;">
+                <h2>You have a Underweight BMI</h2>
+                <img src="../static/img/farquad.png" alt="Farquad" width="90px">
             </div>
-
-            <div class="bmi-sex">
-                <h4 style="display: inline-block">What is your height?</h4>
-                    {% if data[0] %}
-                    <input style="display: inline-block" type="number" name="height" value="{{ data[0] }}" required>
-                    {% else %}
-                    <input style="display: inline-block" type="number" name="height" required>
-                    {% endif %}
+            <div style="border:#00FF38 solid 5px; border-radius: 20px;">
+                {% elif bmi < 24.9 %}
+                <h2>You have a Normal BMI</h2>
+                <img src="../static/img/donkey.png" alt="Farquad" width="100px">
             </div>
-
-            <div class="bmi-sex">
-                <h4 style="display: inline-block">What is your weight?</h4>
-                    {% if data[1] %}
-                    <input style="display: inline-block" type="number" name="weight" value="{{ data[1] }}" required>
-                    {% else %}
-                    <input style="display: inline-block" type="number" name="weight" required>
-                    {% endif %}
+            <div style="border:#DDF000 solid 5px; border-radius: 20px;">
+                {% elif bmi < 29.9 %}
+                <h2>You have a Overweight BMI</h2>
+                <img src="../static/img/fiona.png" alt="Farquad" width="100px">
             </div>
-            
-
-            {% else %}
-            <h2>What is your sex?</h2>
-            <h4>Male</h4>
-            <input type="radio" name="sex" value="M" required>
-            <h4>Female</h4>
-            <input type="radio" name="sex" value="F" reqired>
-            <h2>What is your height?</h2>
-            <input type="number" name="height" required>
-            <h2>What is your weight?</h2>
-            <input type="number" name="weight" required>
-            {% endif %}
-
-            <input type="submit" value="Calculate">            
-        </form>
-    </div>
-
-    <div>
-        <h2>BMI Result</h2>
-        <h2>{{ bmi }}</h2>
-        <table>
-            <tr>
-                <th>Underweight</th>
-                <th>Normal</th>
-                <th>Overweight</th>
-                <th>Obese</th>
-                <th>Extremely Obese</th>
-            </tr>
-            <tr>
-                <td>< 18.5</td>
-                <td>18.5 - 24.9</td>
-                <td>25 - 29.9</td>
-                <td>30 - 34.9</td>
-                <td>35 < </td>
-            </tr>
-        </table>
-
-
-        {% if bmi <= 0 %}
-
-        {% elif bmi < 18.5%}
-        <h2>You have a Underweight BMI</h2>
-        <img src="../static/img/farquad.png" alt="Farquad">
-
-        {% elif bmi < 24.9 %}
-        <h2>You have a Normal BMI</h2>
-        <img src="../static/img/donkey.png" alt="Farquad">
-
-        {% elif bmi < 29.9 %}
-        <h2>You have a Overweight BMI</h2>
-        <img src="../static/img/fiona.png" alt="Farquad">
-
-        {% elif bmi < 34.9 %}
-        <h2>You have a Obese BMI</h2>
-        <img src="../static/img/shrek.png" alt="Farquad">
-
-        {% elif bmi > 35 %}
-        <h2>You have a Extremely Obese BMI</h2>
-        <img src="../static/img/dragon.png" alt="Farquad">
-        {% endif %}
+            <div style="border:#FF9900 solid 5px; border-radius: 20px;">
+                {% elif bmi < 34.9 %}
+                <h2>You have a Obese BMI</h2>
+                <img src="../static/img/shrek.png" alt="Farquad" width="150px">
+            </div>
+            <div style="border:#FF0000 solid 5px; border-radius: 20px;">
+                {% elif bmi > 35 %}
+                <h2>You have a Extremely Obese BMI</h2>
+                <img src="../static/img/dragon.png" alt="Farquad" width="300px">
+            </div>
+                {% endif %}
+            <!-- </div> -->
+        </div>
     </div>
 
     <div class="footer">
         <div class="container1">
             <h4>Pringle Pacers Assignment 3 - Workout tracker</h4>
-            <h6>Yonathan Kogan, Armand Lopez, Harshnoor Singh, Cheuk Lam Chung (Kandy), Sheng Syue Tseng, Daniel Tran</h6>
+            <h5>Yonathan Kogan, Armand Lopez, Harshnoor Singh, Cheuk Lam Chung (Kandy), Sheng Syue Tseng, Daniel Tran</h5>
         </div>
     </div>
     

@@ -472,12 +472,6 @@ h2{
     margin-left: 10px;
 }
 
-.bmi-sex{
-    background-color: #ffffff;
-    padding: 5%;
-    float: left;
-}
-
 
 .addbut {
     font-size: 9px;
@@ -537,4 +531,54 @@ h2{
 .completion td, .completion th{
     padding-left: 20px;
     padding-right: 6px;
+}
+
+.bmi-sex{
+    display: inline-block;
+    padding: 5%;
+    margin: 10px;
+    width: 45%;
+    border-radius: 10px;
+    background-color: #C1D96A;
+    border-radius: 20px;
+}  
+
+.bmi-input{
+    font-family: 'Poppins', sans-serif;
+    height: 35px;
+    width: 170px;   
+    border-radius: 10px;
+    font-size: 10px;
+}  
+
+.bmi-result{
+    display: inline-block;
+    padding: 4%;
+    width: 50%;
+    text-align: center;
+}
+
+.bmi-margin, h4, h6, input{
+    display: inline-block;
+    margin: 15px;
+}
+
+.calculate-button{
+    background-color: #007777; /* Green */
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 15px 32px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+    border-radius: 10px;
+    float: right;
+}
+
+.bmi-background-color{
+    background-color: #ffffff;
+   
+    margin: 30px;
+    border-radius: 20px;
 }
