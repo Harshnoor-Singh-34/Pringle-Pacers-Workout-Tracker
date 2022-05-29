@@ -38,31 +38,60 @@
         <div class="container1">
             <div class="row">
                 <form action="mylist" method="post">
-                    {% for x in workouts %}
-                    {% if x[5] == 1 %}
-                    <br>
-                    <h3><s>{{ x[1] }} ({{ x[2] }}) ({{ x[3] }})</s></h3>
-                    {% else %}
-                    <div class="workout">
-                        <input id="exercise" type="radio" value='{{ x[0] }}' name="workout">
-                        <h3>{{ x[1] }} ({{ x[2] }}) ({{ x[3] }})</h3>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Difficulty</th>
+                            <th>Amount</th>
+                        </tr>
+                        {% for x in workouts %}
+                        <tr>
+                            {% if x[5] == 1 %}
+                            <td></td>
+                            <td>
+                                <h3><s>{{ x[1] }}</s></h3>
+                            </td>
+                            <td>
+                                <h3><s>{{ x[2] }}</s></h3>
+                            </td>
+                            <td>
+                                <h3><s>{{ x[3] }}</s></h3>
+                            </td>
+                            <br>
+                            {% else %}
+                            <td><input type="radio" value='{{ x[0] }}' name="workout"></td>
+                            <td>
+                                <h3>{{ x[1] }}</h3>
+                            </td>
+                            <td>
+                                <h3>{{ x[2] }}</h3>
+                            </td>
+                            <td>
+                                <h3>{{ x[3] }}</h3>
+                            </td>
+                            {% endif %}
+                            {% endfor %}
+                    </table>
             </div>
         </div>
+    </div>
+    <div class="but">
+        <input class="buttonran" type="submit" value="Complete">
+    </div>
 
 
-        </form>
 
-        <div class="row">
-            <div class="but">
-                <input class="compbut" type="submit" value="Complete">
-                <button class="buttonran" onclick="document.location='workout-randomizer'">New List</button>
-                <button class="buttonran" onclick="document.location='workout-randomizer'">List of Excercise</button>
-            </div>
+    </form>
 
+    <div class="row">
+        <div class="but">
+
+            <button class="buttonran" onclick="document.location='workout-randomizer'">New List</button>
+            <button class="buttonran" onclick="document.location='workout'">List of Excercise</button>
         </div>
+
+    </div>
 
 
     </div>
