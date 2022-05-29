@@ -388,6 +388,12 @@ h2{
     
 }
 
+.mylist h1{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+}
+
 
 .mylist h3{
     font-size: 36px;
@@ -404,6 +410,7 @@ h2{
 .mylist input{
     width: 20px;
     height: 53px;
+    
 }
 
 .compbut{
@@ -414,8 +421,12 @@ h2{
     border-radius: 10px;
     background-color:#03A6A6 ;
     width: 230px !important;
-
     height: 53px !important;
+    border: 1px;
+}
+
+.compbut:hover{
+    color:white
 }
 
 
@@ -437,7 +448,11 @@ h2{
     width: 230px !important;
     height: 53px !important;
     text-align: center;
-    
+    border: white;
+}
+
+.buttonran:hover{
+    color: white;
 }
 
 .but{
@@ -492,7 +507,11 @@ h2{
     margin-bottom: 50px;
     width: 700px;
     font-family: 'Poppins', sans-serif;
+    border: 1px solid #283540;
+    padding: 10px;
 }
+
+
 
 .achieve{
     margin-left: auto;
@@ -503,6 +522,7 @@ h2{
     width: 700px;
     text-align: center;
     font-family: 'Poppins', sans-serif;
+    border: 1px solid #283540;
 }
 
 .tabhead{
@@ -511,4 +531,10 @@ h2{
     text-align: center;
     font-size: 35px;
     font-family: 'Poppins', sans-serif;
+}
+
+
+.completion td, .completion th{
+    padding-left: 20px;
+    padding-right: 6px;
 }

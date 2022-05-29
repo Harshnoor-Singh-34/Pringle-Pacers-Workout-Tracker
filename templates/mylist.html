@@ -28,13 +28,15 @@
     </nav>
 
 
-
+    
     <div class="mylist">
+        <h1>My List</h1>
+        <div class="container1">
         <div class="row">
             <form action="mylist" method="post">
                 {% for x in workouts %}
                 {% if x[5] == 1 %}
-                <h3><s>{{ x[1] }} ({{ x[2] }}) ({{ x[3] }})</s></h3>
+                <br><h3><s>{{ x[1] }} ({{ x[2] }}) ({{ x[3] }})</s></h3>
                 {% else %}
                 <div class="workout">
                     <input id="exercise" type="radio" value='{{ x[0] }}' name="workout">
@@ -42,11 +44,9 @@
                     {% endif %}
                     {% endfor %}
                 </div>
-
-               
-
-
         </div>
+
+        
         </form>
 
         <div class="row">
