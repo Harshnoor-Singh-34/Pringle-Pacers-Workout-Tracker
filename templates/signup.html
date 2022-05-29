@@ -25,35 +25,48 @@
         </div>
     </nav>
 
-    <h1>Sign-up</h1>
-    <form action="sign-up" method="post">
-        {% if Error %}
-        <h1>{{ Error }}</h1>
-        {% endif %}
-        <div class="signup1">
-            <h2>Email</h2>
-            <input type="email" name="email" required><br>
-            <h2>Password</h2>
-            <input type="password" name="password" required><br>
-            <h2>Confirm Password</h2>
-            <input type="password" name="confirmpass" required><br>
+    <h1 class="signup">Sign-up</h1>
+    <div class="container2">
+        <div class="row">
+            <div class="col-lg-6">
+
+                <form action="sign-up" method="post">
+                    {% if Error %}
+                    <div class="error2">
+                    <h2>{{ Error }}</h2>
+                    </div>
+                    {% endif %}
+                    <div class="signup1">
+                        <h2>Email</h2>
+                        <input type="email" name="email" required><br>
+                        <h2>Password</h2>
+                        <input type="password" name="password" required><br>
+                        <h2>Confirm Password</h2>
+                        <input type="password" name="confirmpass" required><br>
+                    </div>
+            
+                    <div class="col-lg-6">
+                        <div class="signup2">
+                            <h2>Name</h2>
+                            <input type="text" name="fname" required><br>
+                            <h2>Surname</h2>
+                            <input type="text" name="lname" required><br>
+                            <h2>Date of birth (dd/mm/yyyy)</h2>
+                            <input type="Date" name="dob" required><br>
+                            <h2>Biological Sex</h2>
+                            <select name="sex">
+                                <option value="">None</option>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
+                        </div>
+                        <input class="signbut" type="submit" value="Sign-Up">
+                    </div>
+                </form>
+            
         </div>
-        <div class="signup2">
-            <h2>Name</h2>
-            <input type="text" name="fname" required><br>
-            <h2>Surname</h2>
-            <input type="text" name="lname" required><br>
-            <h2>Date of birth (dd/mm/yyyy)</h2>
-            <input type="Date" name="dob" required><br>
-            <h2>Biological Sex</h2>
-            <select name="sex">
-                <option value="">None</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
-        </div>
-        <input type="submit" value="Sign-Up">
-    </form>
+    </div>
+
 
     <div class="footer">
         <div class="container1">
