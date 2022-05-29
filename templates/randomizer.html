@@ -30,21 +30,26 @@
             </ul>
         </div>
     </nav>
+
+    <h1 class="random">Randomiser</h1>
     <div class="work">
         <div class="row">
             <div class="col-lg-6">
                 <form action="workout-randomizer" method="post">
-                    <select name="difficulty">
+                    <h1>Select Difficulty</h1>
+                    <select name="difficulty">  
                         <option value="">Random</option>
                         <option value="Easy">Easy</option>
                         <option value="Medium">Medium</option>
                         <option value="Hard">Hard</option>
                     </select>
+                    <h1>Select Repetition</h1>
                     <select name="reps">
                         <option value="1">1</option>
                     </select>
+                    <h1>Select Body Part</h1>
                     <select name="exclude">
-                        <option value="">Random</option>
+                        <option value="">None</option>
                         <option value="abs">Abs</option>
                         <option value="chest">Chest</option>
                         <option value="legs">Legs</option>
@@ -52,7 +57,7 @@
                         <option value="aerobic">Cardio/ Aerobic Exercises</option>
                         <option value="arms">Arms</option>
                     </select>
-                    <input type="submit" value="Randomise">
+                    <input class="randbut" type="submit" value="Randomise">
                 </form>
             </div>
 

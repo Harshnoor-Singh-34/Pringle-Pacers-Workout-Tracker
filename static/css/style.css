@@ -253,8 +253,8 @@ h2{
     height: 52px;
     border-radius: 10px;
     text-align: center;
-    margin-top: 60px;
     margin-left: 200px;
+    color: #283540;
     
 }
 
@@ -269,15 +269,38 @@ h2{
     margin-left: 470px;
     border-color: white;
     margin-bottom: 190px;
-
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
 }
 
 .table{
     border: none;
     padding-left: 150px;
     padding-top: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 30px;
+    color: #283540;
     
 }
 
+.random{
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+    text-align: center;
+    font-size: 96px;
+}
+
+.randbut:hover{
+    color: white;
+}
+
+.work h1{
+    font-size: 25px;
+    margin-top: 50px;
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+    text-align: center;
+
+}
 
 
