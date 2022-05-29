@@ -11,7 +11,7 @@ def index():
 	if "user" not in session:
 		session['user'] = None
 	if session['user']:
-		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
+		con = psycopg2.connect(dbname = "postgres", user = "postgres", password = "postgres", host = "pringlepacers.cyj8mbw3wtqa.us-west-1.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
 		cur.execute(f"SELECT fname, lname FROM customer WHERE id='{session['user']}'")
 		user = cur.fetchone()
