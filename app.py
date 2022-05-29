@@ -42,15 +42,13 @@ def signup():
 		cur = con.cursor()
 		cur.execute(f"SELECT email FROM customer WHERE email='{email}'")
 		results = cur.fetchall()
-		con.close()
 		if len(results) != 0 and email == results[0][0]:
+			con.close()
 			Errormessage = "Email already exists"
 			return render_template("signup.html", Error = Errormessage)
 		else:
 			if password == confirmpass:
 				table = 'customer (fname, lname, email, password, dob, sex)'
-				con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
-				cur = con.cursor()
 				cur.execute(f"INSERT INTO {table} VALUES ('{fname}', '{lname}', '{email}', '{password}', '{dob}', '{sex}')")
 				cur.execute(f"SELECT aid FROM achivements")
 				aid = cur.fetchall() 
@@ -64,9 +62,13 @@ def signup():
 				con.commit()
 				con.close()
 				return redirect(url_for("login"))
+		
+				
 			else:
 				Errormessage = "Paswords don't match"
+				con.close()
 				return render_template("signup.html", Error = Errormessage)
+		
 		
 	else:
 		return render_template("signup.html")
