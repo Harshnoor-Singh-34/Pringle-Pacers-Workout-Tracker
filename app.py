@@ -305,5 +305,6 @@ def achivement():
 # 	return redirect(url_for("listItems"))
 
 if __name__ == "__main__":
-	app.run(debug=True)
+	session['user'] = None
+	app.run()
 
