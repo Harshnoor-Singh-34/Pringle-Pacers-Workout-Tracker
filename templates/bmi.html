@@ -33,42 +33,48 @@
 
     <div>
         <form action="bmi" method="post">
+            <h1>BMI Calculator</h1>
             {% if session['user'] %}
-            <h2>What is your sex?</h2>
-            <h3>Male</h3>
-                {% if data[2] == "M" %}
-                <input type="radio" name="sex" value="M" checked required>
-                {% else %}
-                <input type="radio" name="sex" value="M" required>
-                {% endif %}
+            <div class="bmi-sex">
+                <h4 style="display: inline-block">What is your sex?</h4>
+                <h6 style="display: inline-block">Male</h6>
+                    {% if data[2] == "M" %}
+                    <input type="radio" name="sex" value="M" checked required>
+                    {% else %}
+                    <input type="radio" name="sex" value="M" required>
+                    {% endif %}
+                <h6 style="display: inline-block">Female</h6>
+                    {% if data[2] == "F" %}
+                    <input type="radio" name="sex" value="F"  checked reqired>
+                    {% else %}
+                    <input type="radio" name="sex" value="F" reqired>
+                    {% endif %}
+            </div>
 
-            <h3>Female</h3>
-                {% if data[2] == "F" %}
-                <input type="radio" name="sex" value="F"  checked reqired>
-                {% else %}
-                <input type="radio" name="sex" value="F" reqired>
-                {% endif %}
-                
-            <h2>What is your height?</h2>
-                {% if data[0] %}
-                <input type="number" name="height" value="{{ data[0] }}" required>
-                {% else %}
-                <input type="number" name="height" required>
-                {% endif %}
-                
-            <h2>What is your weight?</h2>
-                {% if data[1] %}
-                <input type="number" name="weight" value="{{ data[1] }}" required>
-                {% else %}
-                <input type="number" name="weight" required>
-                {% endif %}
+            <div class="bmi-sex">
+                <h4 style="display: inline-block">What is your height?</h4>
+                    {% if data[0] %}
+                    <input style="display: inline-block" type="number" name="height" value="{{ data[0] }}" required>
+                    {% else %}
+                    <input style="display: inline-block" type="number" name="height" required>
+                    {% endif %}
+            </div>
+
+            <div class="bmi-sex">
+                <h4 style="display: inline-block">What is your weight?</h4>
+                    {% if data[1] %}
+                    <input style="display: inline-block" type="number" name="weight" value="{{ data[1] }}" required>
+                    {% else %}
+                    <input style="display: inline-block" type="number" name="weight" required>
+                    {% endif %}
+            </div>
             
 
             {% else %}
             <h2>What is your sex?</h2>
-            <h3>Male</h3>
+            <h4>Male</h4>
             <input type="radio" name="sex" value="M" required>
-            <h3>Female</h3>
+            <h4>Female</h4>
             <input type="radio" name="sex" value="F" reqired>
             <h2>What is your height?</h2>
             <input type="number" name="height" required>
@@ -128,7 +134,7 @@
     <div class="footer">
         <div class="container1">
             <h4>Pringle Pacers Assignment 3 - Workout tracker</h4>
-            <h5>Yonathan Kogan, Armand Lopez, Harshnoor Singh, Cheuk Lam Chung (Kandy), Sheng Syue Tseng, Daniel Tran</h5>
+            <h6>Yonathan Kogan, Armand Lopez, Harshnoor Singh, Cheuk Lam Chung (Kandy), Sheng Syue Tseng, Daniel Tran</h6>
         </div>
     </div>
     

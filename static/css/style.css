@@ -452,3 +452,9 @@ h2{
 .worklist{
     margin-left: 10px;
 }
+
+.bmi-sex{
+    background-color: #ffffff;
+    padding: 5%;
+    float: left;
+}
