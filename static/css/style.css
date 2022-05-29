@@ -485,3 +485,30 @@ h2{
 .addbut:hover{
     color: white;
 }
+
+.completion{
+    font-size: 25px;
+    color: #283540;
+    margin-bottom: 50px;
+    width: 700px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.achieve{
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 25px;
+    color: #283540;
+    margin-bottom: 50px;
+    width: 700px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.tabhead{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Poppins', sans-serif;
+}

@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="UTF-8">
-	<title>INDEX jah</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <title>INDEX jah</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="..\static\css\style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
-	<nav>
+    <nav>
         <div class="container1">
             <ul>
                 <li><img src="..\static\img\pringles.png" alt="Pringle Pacers"></li>
@@ -27,45 +31,55 @@
         </div>
     </nav>
 
-	<table>
-        <tr>
-            <th>Completed Achievements</th>
-        </tr>
-        <tr>
-            <th>Name</th>
-            <th>Date Finished</th>
-        </tr>
-        {% for x in achieve %}
-        {% if x[0] == 1 %}
-        <tr>
-            <td>{{ x[1] }}</td>
-            <td>{{ x[2] }}</td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-    </table>
+    <div class="container1">
+        <div class="row">
+            <div class="col-lg-6">
+                <table class="completion">
+                    <tr>
+                        <th class="tabhead">Completed Achievements</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date Finished</th>
+                    </tr>
+                    {% for x in achieve %}
+                    {% if x[0] == 1 %}
+                    <tr>
+                        <td>{{ x[1] }}</td>
+                        <td>{{ x[2] }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="col-lg-6">
+                <table class="achieve">
+                    <tr>
+                        <th class="tabhead">Achievements In progress</th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    {% for x in achieve %}
+                    {% if x[0] == 0 %}
+                    <tr>
+                        <td>{{ x[1] }}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
 
-    <table>
-        <tr>
-            <th>Achievements In progress</th>
-        </tr>
-        <tr>
-            <th>Name</th>
-        </tr>
-        {% for x in achieve %}
-        {% if x[0] == 0 %}
-        <tr>
-            <td>{{ x[1] }}</td>
-        </tr>
-        {% endif %}
-        {% endfor %}
-    </table>
 
-	<div class="footer">
+    <div class="footer">
         <div class="container1">
             <h4>Pringle Pacers Assignment 3 - Workout tracker</h4>
-            <h5>Yonathan Kogan, Armand Lopez, Harshnoor Singh, Cheuk Lam Chung (Kandy), Sheng Syue Tseng, Daniel Tran</h5>
+            <h5>Yonathan Kogan, Armand Lopez, Harshnoor Singh, Cheuk Lam Chung (Kandy), Sheng Syue Tseng, Daniel Tran
+            </h5>
         </div>
     </div>
 </body>
+
 </html>
