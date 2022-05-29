@@ -24,7 +24,7 @@ cur = con.cursor()
 
 
 
-cur.execute(f"SELECT height, weight, sex FROM customer WHERE id=1")
+cur.execute(f"SELECT id from customer where email = 'harshnoor34@gmail.com'")
 details = cur.fetchone()
 print(details)
 con.close()

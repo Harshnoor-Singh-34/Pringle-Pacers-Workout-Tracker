@@ -8,6 +8,17 @@ app.config['SECRET_KEY'] = "pringlepacerspp"
 # load the index.html
 @app.route("/")
 def index():
+	if session['user']:
+		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+		cur = con.cursor()
+		cur.execute(f"SELECT fname, lname FROM customer WHERE id='{session['user']}'")
+		user = cur.fetchone()
+		cur.execute(f"select w.*, cw.complete from customer_workout cw join workout w on cw.wid = w.w_id WHERE id={session['user']}")
+		workouts = cur.fetchall()
+		cur.execute(f"SELECT TO_CHAR(ca.date_finished :: DATE, 'dd/mm/yyyy'), a.name FROM customer_achivement ca JOIN achivements a on ca.aid = a.aid WHERE ca.id='{session['user']}' ORDER BY date_finished")
+		achivement = cur.fetchone()
+		con.close()
+		return render_template("index.html", name = user, workouts = workouts, achivement = achivement)
 	return render_template("index.html")
 
 # Sign-up page
@@ -37,6 +48,15 @@ def signup():
 				con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
 				cur = con.cursor()
 				cur.execute(f"INSERT INTO {table} VALUES ('{fname}', '{lname}', '{email}', '{password}', '{dob}', '{sex}')")
+				cur.execute(f"SELECT aid FROM achivements")
+				aid = cur.fetchall() 
+				cur.execute(f"SELECT id from customer where email = '{email}'")
+				id = cur.fetchone();
+				for achivement in aid:
+					cur.execute(f"INSERT INTO customer_achivement(id, aid, complete) VALUES({id[0]}, {achivement[0]}, 0)")
+				cur.execute(f"SELECT ca.caid from customer_achivement ca join achivements a on ca.aid = a.aid where a.name = 'Register an account' and ca.id = {session['user']}")
+				caid = cur.fetchone()
+				cur.execute(f"UPDATE customer_achivement set complete = 1, date_finished = NOW()  where caid = '{caid[0]}'")
 				con.commit()
 				con.close()
 				return redirect(url_for("login"))
@@ -75,6 +95,15 @@ def login():
 
 @app.route("/about-us", methods = ["GET"])
 def aboutus():
+	if session['user']:
+		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+		cur = con.cursor()
+		cur.execute(f"SELECT ca.caid, ca.complete from customer_achivement ca join achivements a on ca.aid = a.aid where a.name = 'Visit the about us page' and ca.id = {session['user']}")
+		results = cur.fetchone()
+		if int(results[1]) == 0:
+			cur.execute(f"UPDATE customer_achivement set complete = 1, date_finished = NOW() WHERE caid = {results[0]}")
+			con.commit()
+		con.close()
 	return render_template("aboutus.html")
 
 @app.route("/profile", methods = ["GET"])
@@ -106,6 +135,15 @@ def profileedit():
 		cur = con.cursor()
 		cur.execute(f"UPDATE customer SET dob='{dob}', sex='{sex}' {height_weight_sql} WHERE id = {session['user']}")
 		con.commit()
+		con.close()
+
+		con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+		cur = con.cursor()
+		cur.execute(f"SELECT ca.caid, ca.complete from customer_achivement ca join achivements a on ca.aid = a.aid where a.name = 'Edit your details' and ca.id = {session['user']}")
+		results = cur.fetchone()
+		if int(results[1]) == 0:
+			cur.execute(f"UPDATE customer_achivement set complete = 1, date_finished = NOW() WHERE caid = {results[0]}")
+			con.commit()
 		con.close()
 		return redirect(url_for("profile"))
 	else:
@@ -145,7 +183,7 @@ def randomizer():
 			random_workout = random.choice(workouts)
 			if random_workout not in random_workouts:
 				random_workouts.append(random_workout)
-				cur.execute(f"INSERT INTO customer_workout(id,wid,complete) VALUES ({session['user']}, {random_workout[0]}, 0)")
+				cur.execute(f"INSERT INTO customer_workout(id,wid,complete) VALUES({session['user']}, {random_workout[0]}, 0)")
 				con.commit()
 				counter += 1
 			
@@ -219,7 +257,15 @@ def bmi():
 		con.close()
 		return render_template("bmi.html", data = results, bmi = bmi)
 	return render_template("bmi.html", data = None, bmi = bmi)
-	
+
+@app.route("/achievement", methods = ["POST", "GET"])
+def achivement():
+	con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+	cur = con.cursor()
+	cur.execute(f"SELECT ca.complete, a.name, TO_CHAR(ca.date_finished :: DATE, 'dd/mm/yyyy') FROM customer_achivement ca join achivements a on ca.aid = a.aid WHERE ca.id='{session['user']}'")
+	results = cur.fetchall()
+	con.close()
+	return render_template("achivement.html", achieve = results)
 
 # list items database
 # @app.route("/list", methods=["POST", "GET"])

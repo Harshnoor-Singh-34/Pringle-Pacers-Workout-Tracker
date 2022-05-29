@@ -32,13 +32,57 @@
         </div>
     </nav>
 
+    {% if session['user'] %}
+    <h1>Welcome, {{ name[0] }} {{ name[1] }}</h1>
 
-	<h1>Fantastic heading of our app!</h1>
-	<h2>This is my app</h2>
-	
-	<a href="/add">Add an item</a><br>
-	<a href="/list">List all items</a><br>
-	
+    <div>
+        <table>
+            <tr>
+                <th>Preview of Current list:</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Difficulty</th>
+                <th>Amount</th>
+            </tr>
+            {% for x in workouts %}
+            <tr>
+                {% if x[5] == 1 %}
+                <td><s>{{ x[1] }}</s></td>  
+                <td><s>{{ x[2] }}</s></td>
+                <td><s>{{ x[3] }}</s></td>
+                {% else %}
+                <td>{{ x[1] }}</td>  
+                <td>{{ x[2] }}</td>
+                <td>{{ x[3] }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <th>Latest Achievement:</th>
+            </tr>
+            <tr>
+                <td>Achivement Name</td>
+                <td>Date Finished</td>
+            </tr>
+            <tr>
+                <td>{{ achivement[1] }}</td>
+                <td>{{ achivement[0] }}</td>
+            </tr>
+        </table>
+    </div>
+    {% else %}
+    <h1>Welcome</h1>
+    <h4>Preview of Current list:</h4>
+    <a href="/login">Login to view</a>
+    <h4>Latest Achievement:</h4>
+    <a href="/login">Login to view</a>
+    {% endif %}
 
 	<div class="footer">
         <div class="container1">
