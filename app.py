@@ -97,6 +97,8 @@ def login():
 
 @app.route("/about-us", methods = ["GET"])
 def aboutus():
+	if "user" not in session:
+		session['user'] = None
 	if session['user']:
 		con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
 		cur = con.cursor()
@@ -242,6 +244,8 @@ def workout_select(id):
 
 @app.route("/bmi", methods = ["POST", "GET"])
 def bmi():
+	if "user" not in session:
+		session['user'] = None
 	bmi = 0
 	if request.method == "POST":
 		sex = request.form["sex"]
@@ -307,6 +311,5 @@ def achivement():
 # 	return redirect(url_for("listItems"))
 
 if __name__ == "__main__":
-	session['user'] = None
 	app.run()
 
