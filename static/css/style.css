@@ -195,6 +195,9 @@ h2{
     font-size: 20px;
     color: #283540;
     font-family: 'Poppins', sans-serif;
+    margin-top: 20px;
+    margin-left: 190px;
+    text-align: left;
 }
 
 .signup2 input{
@@ -241,4 +244,24 @@ h2{
     width: 553px;
     height: 52px;
     border-radius: 10px;
+}
+
+.work select{
+    font-size: 45px;
+    font-family: 'Poppins', sans-serif;
+    width: 553px;
+    height: 52px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+    
+}
+
+.work input{
+    width: 284px;
+    height: 63px;
+    border-radius: 10px;
+    background-color: #03A6A6;
+    font-size: 35px;
+    text-align: center;
 }
