@@ -19,13 +19,13 @@ import psycopg2
 # print(len(details[0]))
 # con.close()
 
-con = psycopg2.connect(dbname = "Workout", user = "PringlePacers", password = "PringlePacers27", host = "127.0.0.1", port = "5432")
+con = psycopg2.connect(dbname = "workoutpringlepacers", user = "postgres", password = "postgres", host = "pringle-pacers-database.cbdgpavk6vij.ap-southeast-2.rds.amazonaws.com", port = "5432")
 cur = con.cursor()
 
 
 
-cur.execute(f"SELECT id from customer where email = 'harshnoor34@gmail.com'")
-details = cur.fetchone()
+cur.execute(f"SELECT * from achivements")
+details = cur.fetchall()
 print(details)
 con.close()
 
