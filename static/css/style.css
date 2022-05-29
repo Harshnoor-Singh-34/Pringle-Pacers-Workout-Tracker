@@ -194,7 +194,6 @@ h2{
 .signup2 h2{
     font-size: 20px;
     color: #283540;
-    margin-right: 20px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -212,8 +211,9 @@ h2{
     font-size: 35px;
     font-family: 'Poppins', sans-serif;
     box-shadow: none;
-    margin-bottom: 10px !important;
+    margin-bottom: 130px !important;
     border-radius: 10px;
+    margin-top: 50px;
 }
 
 .signbut:hover{
