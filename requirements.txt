@@ -1,0 +1,4 @@
+Flask==2.0.2
+random
+Jinja2==3.0.2
+psycopg2==2.9.1
