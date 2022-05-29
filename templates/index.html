@@ -41,7 +41,7 @@
     </div>
 
 
-    <div class="content">
+    <div class="content1">
         <div class="row">
             <div class="col-lg-6">
                 <table>
@@ -73,35 +73,35 @@
 
 
             <div class="col-lg-6">
-                <div>
-                    <table>
-                        <tr>
-                            <th>Latest Achievement:</th>
-                        </tr>
-                        <tr>
-                            <td>Achivement Name</td>
-                            <td>Date Finished</td>
-                        </tr>
-                        <tr>
-                            <td>{{ achivement[1] }}</td>
-                            <td>{{ achivement[0] }}</td>
-                        </tr>
-                    </table>
-                </div>
+                <table >
+                    <tr>
+                        <th>Latest Achievement:</th>
+                    </tr>
+                    <tr>
+                        <td>Achivement Name</td>
+                        <td>Date Finished</td>
+                    </tr>
+                    <tr>
+                        <td>{{ achivement[1] }}</td>
+                        <td>{{ achivement[0] }}</td>
+                    </tr>
+                </table>   
             </div>
 
             {% else %}
             <h1 class="welhead">Welcome</h1>
-            <div class="content">
+
+            <div class="content2">
                 <div class="row">
                     <div class="col-lg-6">
                         <h4>Preview of Current list:</h4>
                         <a href="/login">Login to view</a>
                     </div>
-                    <div class="col-lg-6"></div>
-                    <h4>Latest Achievement:</h4>
-                    <a href="/login">Login to view</a>
-                    {% endif %}
+                    <div class="col-lg-6">
+                        <h4>Latest Achievement:</h4>
+                        <a href="/login">Login to view</a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

@@ -601,6 +601,19 @@ h2{
 }
 
 
-.content{
+.content1{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #283540;
+}
+
+.content2{
   text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: #283540;
+}
+
+
+.preview th{
+    text-align: center;
 }
